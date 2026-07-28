@@ -137,6 +137,72 @@
         <p class="text-xl font-bold text-gray-800">Completează: ... măr, ... mere, ... pară.</p>
         <p class="text-sm text-gray-500 mt-2 italic">(Răspuns: un măr, niște mere, o pară)</p>
     </div>
+<div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-yellow-400">
+                        <div class="hidden-translation text-pink-500 text-sm font-semibold">одна девочка</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-green-50 border-4 border-green-400 rounded-2xl p-4 flex flex-col items-center">
+                <div class="text-6xl mb-2">👨‍👩‍👧‍👦</div>
+                <h2 class="title-font text-4xl text-green-600 mb-4 uppercase tracking-widest">NIȘTE</h2>
+                <div class="space-y-3 w-full">
+                    <div class="bg-white p-3 rounded-xl border border-green-200 text-center cursor-pointer">
+                        <span class="text-xl font-bold">niște elevi</span>
+                        <div class="hidden-translation text-green-500 text-sm font-semibold">несколько учеников</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="p-8 bg-indigo-50">
+            <h3 class="title-font text-2xl text-indigo-800 mb-6 text-center">Exercițiu interactiv: Completează spațiile</h3>
+            <div id="exercise" class="space-y-4 max-w-lg mx-auto">
+                <div class="flex items-center gap-4 text-xl font-bold">
+                    <input type="text" id="ans1" class="w-24 p-2 border-2 border-blue-400 rounded-lg text-center" placeholder="..."> măr
+                </div>
+                <div class="flex items-center gap-4 text-xl font-bold">
+                    <input type="text" id="ans2" class="w-24 p-2 border-2 border-green-400 rounded-lg text-center" placeholder="..."> mere
+                </div>
+                <div class="flex items-center gap-4 text-xl font-bold">
+                    <input type="text" id="ans3" class="w-24 p-2 border-2 border-pink-400 rounded-lg text-center" placeholder="..."> pară
+                </div>
+                <button onclick="checkAnswers()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 rounded-xl transition duration-200">
+                    Verifică răspunsurile!
+                </button>
+                <p id="resultMessage" class="text-center font-bold text-lg hidden"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const answers = {
+                ans1: "un",
+                ans2: "niște",
+                ans3: "o"
+            };
+            
+            let allCorrect = true;
+            for (let id in answers) {
+                const el = document.getElementById(id);
+                if (el.value.toLowerCase().trim() === answers[id]) {
+                    el.classList.add("bg-green-100", "border-green-500");
+                    el.classList.remove("border-red-500");
+                } else {
+                    el.classList.add("bg-red-100", "border-red-500");
+                    allCorrect = false;
+                }
+            }
+            
+            const msg = document.getElementById("resultMessage");
+            msg.classList.remove("hidden");
+            if (allCorrect) {
+                msg.innerText = "Bravo! Ai răspuns corect la toate! 🎉";
+                msg.className = "text-center font-bold text-lg text-green-600";
+            } else {
+                msg.innerText = "Mai încearcă o dată! 💡";
+                msg.className = "text-center font-bold text-lg text-red-600";
+            }
+        }
 </body>
 </html>
