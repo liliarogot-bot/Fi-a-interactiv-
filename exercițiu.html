@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Învață Româna: Un, O, Niște</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #f0f9ff; }
+        .title-font { font-family: 'Fredoka One', cursive; }
+        .card { transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+        .hidden-translation { opacity: 0; transition: opacity 0.3s ease; }
+        .card:hover .hidden-translation { opacity: 1; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-yellow-400">
+        <div class="bg-yellow-400 p-6 text-center">
+            <h1 class="title-font text-4xl text-blue-800 mb-2">Să învățăm împreună! 🎨</h1>
+            <p class="text-xl text-blue-900 font-semibold italic">Articolul nehotărât</p>
+        </div>
+
+        <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card bg-blue-50 border-4 border-blue-400 rounded-2xl p-4 flex flex-col items-center">
+                <div class="text-6xl mb-2">👦</div>
+                <h2 class="title-font text-5xl text-blue-600 mb-4 uppercase tracking-widest">UN</h2>
+                <div class="space-y-3 w-full">
+                    <div class="bg-white p-3 rounded-xl border border-blue-200 text-center cursor-pointer">
+                        <span class="text-xl font-bold">un băiat</span>
+                        <div class="hidden-translation text-blue-500 text-sm font-semibold">один мальчик</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-pink-50 border-4 border-pink-400 rounded-2xl p-4 flex flex-col items-center">
+                <div class="text-6xl mb-2">👧</div>
+                <h2 class="title-font text-5xl text-pink-600 mb-4 uppercase tracking-widest">O</h2>
+                <div class="space-y-3 w-full">
+                    <div class="bg-white p-3 rounded-xl border border-pink-200 text-center cursor-pointer">
+                        <span class="text-xl font-bold">o fată</span>
+                        <div class="hidden-translation text-pink-500 text-sm font-semibold">одна девочка</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-green-50 border-4 border-green-400 rounded-2xl p-4 flex flex-col items-center">
+                <div class="text-6xl mb-2">👨‍👩‍👧‍👦</div>
+                <h2 class="title-font text-4xl text-green-600 mb-4 uppercase tracking-widest">NIȘTE</h2>
+                <div class="space-y-3 w-full">
+                    <div class="bg-white p-3 rounded-xl border border-green-200 text-center cursor-pointer">
+                        <span class="text-xl font-bold">niște elevi</span>
+                        <div class="hidden-translation text-green-500 text-sm font-semibold">несколько учеников</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8 bg-indigo-50">
+            <h3 class="title-font text-2xl text-indigo-800 mb-6 text-center">Exercițiu interactiv: Completează spațiile</h3>
+            <div id="exercise" class="space-y-4 max-w-lg mx-auto">
+                <div class="flex items-center gap-4 text-xl font-bold">
+                    <input type="text" id="ans1" class="w-24 p-2 border-2 border-blue-400 rounded-lg text-center" placeholder="..."> măr
+                </div>
+                <div class="flex items-center gap-4 text-xl font-bold">
+                    <input type="text" id="ans2" class="w-24 p-2 border-2 border-green-400 rounded-lg text-center" placeholder="..."> mere
+                </div>
+                <div class="flex items-center gap-4 text-xl font-bold">
+                    <input type="text" id="ans3" class="w-24 p-2 border-2 border-pink-400 rounded-lg text-center" placeholder="..."> pară
+                </div>
+                <button onclick="checkAnswers()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 rounded-xl transition duration-200">
+                    Verifică răspunsurile!
+                </button>
+                <p id="resultMessage" class="text-center font-bold text-lg hidden"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const answers = {
+                ans1: "un",
+                ans2: "niște",
+                ans3: "o"
+            };
+            
+            let allCorrect = true;
+            for (let id in answers) {
+                const el = document.getElementById(id);
+                if (el.value.toLowerCase().trim() === answers[id]) {
+                    el.classList.add("bg-green-100", "border-green-500");
+                    el.classList.remove("border-red-500");
+                } else {
+                    el.classList.add("bg-red-100", "border-red-500");
+                    allCorrect = false;
+                }
+            }
+            
+            const msg = document.getElementById("resultMessage");
+            msg.classList.remove("hidden");
+            if (allCorrect) {
+                msg.innerText = "Bravo! Ai răspuns corect la toate! 🎉";
+                msg.className = "text-center font-bold text-lg text-green-600";
+            } else {
+                msg.innerText = "Mai încearcă o dată! 💡";
+                msg.className = "text-center font-bold text-lg text-red-600";
+            }
+        }
+    </script>
+</body>
+</html>
