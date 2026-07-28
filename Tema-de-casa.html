@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super-Misiunea Detectivului: Un, O, Niște</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #f0fdf4; }
+        .title-font { font-family: 'Fredoka One', cursive; }
+        .hover-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1); }
+        .hidden-translation { opacity: 0; transition: opacity 0.3s ease; }
+        .hover-card:hover .hidden-translation { opacity: 1; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-emerald-400">
+        
+        <!-- Antet -->
+        <div class="bg-emerald-500 p-6 text-center text-white">
+            <h1 class="title-font text-3xl md:text-4xl mb-2">🎒 Super-Misiunea Clasei Noastre</h1>
+            <p class="text-emerald-100 font-semibold text-lg">Rechizite și Mobilier cu UN, O, NIȘTE</p>
+        </div>
+
+        <div class="p-6 md:p-8 space-y-10">
+
+            <!-- PARTEA 1: Categorii / Cutii (Un vs O) cu continuarea șirului -->
+            <div class="bg-blue-50 border-2 border-blue-300 rounded-2xl p-6">
+                <h2 class="title-font text-2xl text-blue-800 mb-2 text-center">1. Continuă șirul în cutia corectă</h2>
+                <p class="text-gray-600 text-center mb-6 font-medium">Privește exemplele date și continuă șirul adăugând cuvintele potrivite în fiecare cutie. Treci cu cursorul pentru traducere!</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Cutia UN -->
+                    <div class="bg-blue-100 border-4 border-blue-400 rounded-2xl p-5 text-center">
+                        <h3 class="title-font text-2xl text-blue-700 mb-4">📦 Șirul UN (Băiat / Neutru)</h3>
+                        <div class="space-y-3">
+                            <div class="hover-card bg-white p-3 rounded-xl border border-blue-300 cursor-pointer shadow-sm">
+                                <span class="font-bold text-lg text-blue-900">un ghiozdan</span>
+                                <div class="hidden-translation text-blue-600 text-sm font-semibold">портфель</div>
+                            </div>
+                            <div class="hover-card bg-white p-3 rounded-xl border border-blue-300 cursor-pointer shadow-sm">
+                                <span class="font-bold text-lg text-blue-900">un scaun</span>
+                                <div class="hidden-translation text-blue-600 text-sm font-semibold">стул</div>
+                            </div>
+                            <div class="hover-card bg-white p-3 rounded-xl border border-blue-300 cursor-pointer shadow-sm">
+                                <span class="font-bold text-lg text-blue-900">un penar <span class="text-xs bg-blue-500 text-white px-2 py-0.5 rounded-full ml-1">Continuare șir</span></span>
+                                <div class="hidden-translation text-blue-600 text-sm font-semibold">пенал</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cutia O -->
+                    <div class="bg-pink-100 border-4 border-pink-400 rounded-2xl p-5 text-center">
+                        <h3 class="title-font text-2xl text-pink-700 mb-4">📦 Șirul O (Fată)</h3>
+                        <div class="space-y-3">
+                            <div class="hover-card bg-white p-3 rounded-xl border border-pink-300 cursor-pointer shadow-sm">
+                                <span class="font-bold text-lg text-pink-900">o masă</span>
+                                <div class="hidden-translation text-pink-600 text-sm font-semibold">парта / стол</div>
+                            </div>
+                            <div class="hover-card bg-white p-3 rounded-xl border border-pink-300 cursor-pointer shadow-sm">
+                                <span class="font-bold text-lg text-pink-900">o riglă</span>
+                                <div class="hidden-translation text-pink-600 text-sm font-semibold">линейка</div>
+                            </div>
+                            <div class="hover-card bg-white p-3 rounded-xl border border-pink-300 cursor-pointer shadow-sm">
+                                <span class="font-bold text-lg text-pink-900">o carte <span class="text-xs bg-pink-500 text-white px-2 py-0.5 rounded-full ml-1">Continuare șir</span></span>
+                                <div class="hidden-translation text-pink-600 text-sm font-semibold">книга</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARTEA 2: 10 Căsuțe de completat (Un - O - Niște) cu traduceri la hover -->
+            <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-6">
+                <h2 class="title-font text-2xl text-amber-800 mb-2 text-center">2. Completează cele 10 propoziții</h2>
+                <p class="text-gray-600 text-center mb-6 font-medium">Scrie <span class="text-blue-600 font-bold">un</span>, <span class="text-pink-600 font-bold">o</span> sau <span class="text-emerald-600 font-bold">niște</span>. Treci cu cursorul peste căsuțe pentru ajutor (traducerea în rusă)!</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    
+                    <!-- 1 (Modificat: Pe masă este un măr) -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">1. Pe masă este</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">на парте... (яблоко)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c1" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">măr</span>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">2. În ghiozdan am</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">в портфеле... (книги)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c2" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">cărți</span>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">3. Pe perete este</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">на стене... (доска)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c3" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">tablă</span>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">4. În penar am</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">в пенале... (ручки)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c4" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">stilouri</span>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">5. Lângă ușă este</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">у двери... (шкаф)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c5" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">dulap</span>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">6. Pe bancă este</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">на парте... (линейка)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c6" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">riglă</span>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">7. Copilul folosește</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">ребенок использует... (ластик)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c7" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">radieră</span>
+                        </div>
+                    </div>
+
+                    <!-- 8 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">8. În clasă avem</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">в классе у нас... (парты)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c8" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">bănci</span>
+                        </div>
+                    </div>
+
+                    <!-- 9 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">9. Profesorul ia</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">учитель берет... (тетради)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c9" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">caiete</span>
+                        </div>
+                    </div>
+
+                    <!-- 10 -->
+                    <div class="hover-card bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm cursor-pointer">
+                        <div>
+                            <span class="font-bold text-gray-700">10. Eu am cumpărat</span>
+                            <div class="hidden-translation text-xs text-amber-600 font-semibold">я купил... (карандаши)</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="c10" class="w-20 p-2 border-2 border-amber-400 rounded-lg text-center uppercase font-bold" placeholder="...">
+                            <span class="font-bold text-gray-800">creioane</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PARTEA 3: Unde punem "NIȘTE"? (Misiunea Pluralului) -->
+            <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6">
+                <h2 class="title-font text-2xl text-emerald-800 mb-2 text-center">3. Misiunea Pluralului: Unde punem NIȘTE?</h2>
+                <p class="text-gray-600 text-center mb-6 font-medium">Completează cu <span class="text-emerald-600 font-bold">niște</span> doar unde avem mai multe obiecte (la plural)!</p>
+
+                <div class="space-y-4 max-w-xl mx-auto bg-white p-5 rounded-2xl border border-emerald-200 shadow-sm">
+                    
+                    <div class="flex items-center justify-between gap-2 text-lg font-bold text-gray-800">
+                        <span>Pe masă sunt</span>
+                        <input type="text" id="n1" class="w-28 p-2 border-2 border-emerald-400 rounded-xl text-center uppercase" placeholder="...">
+                        <span>caiete.</span>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-2 text-lg font-bold text-gray-800">
+                        <span>În ghiozdan este</span>
+                        <input type="text" id="n2" class="w-28 p-2 border-2 border-emerald-400 rounded-xl text-center uppercase" placeholder="...">
+                        <span>penar.</span>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-2 text-lg font-bold text-gray-800">
+                        <span>Acolo sunt</span>
+                        <input type="text" id="n3" class="w-28 p-2 border-2 border-emerald-400 rounded-xl text-center uppercase" placeholder="...">
+                        <span>fete.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Buton de verificare -->
+            <div class="text-center pt-4">
+                <button onclick="checkAllMissions()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xl px-8 py-4 rounded-2xl shadow-lg transition duration-200 w-full md:w-auto">
+                    Verifică Toate Misiunile! 🚀
+                </button>
+                <p id="globalMessage" class="font-bold text-xl mt-4 hidden"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function checkAllMissions() {
+            // Răspunsul pentru prima propoziție modificată este "un" (un măr)
+            const ansPart2 = {
+                c1: "un",
+                c2: "niște",
+                c3: "o",
+                c4: "niște",
+                c5: "un",
+                c6: "o",
+                c7: "o",
+                c8: "niște",
+                c9: "niște",
+                c10: "niște"
+            };
+
+            const ansPart3 = {
+                n1: "niște",
+                n2: "un",
+                n3: "niște"
+            };
+
+            let allCorrect = true;
+
+            for (let id in ansPart2) {
+                const input = document.getElementById(id);
+                if (input.value.toLowerCase().trim() === ansPart2[id]) {
+                    input.classList.add("bg-green-100", "border-green-500");
+                    input.classList.remove("border-red-500", "bg-red-100");
+                } else {
+                    input.classList.add("bg-red-100", "border-red-500");
+                    input.classList.remove("border-green-500", "bg-green-100");
+                    allCorrect = false;
+                }
+            }
+
+            for (let id in ansPart3) {
+                const input = document.getElementById(id);
+                if (input.value.toLowerCase().trim() === ansPart3[id]) {
+                    input.classList.add("bg-green-100", "border-green-500");
+                    input.classList.remove("border-red-500", "bg-red-100");
+                } else {
+                    input.classList.add("bg-red-100", "border-red-500");
+                    input.classList.remove("border-green-500", "bg-green-100");
+                    allCorrect = false;
+                }
+            }
+
+            const msg = document.getElementById("globalMessage");
+            msg.classList.remove("hidden");
+            if (allCorrect) {
+                msg.innerText = "🎉 Felicitări! Ești un detectiv excepțional! Totul este corect!";
+                msg.className = "font-bold text-xl mt-4 text-emerald-600";
+            } else {
+                msg.innerText = "💡 Mai verifică căsuțele colorate cu roșu. Mai ai puțin!";
+                msg.className = "font-bold text-xl mt-4 text-red-600";
+            }
+        }
+    </script>
+</body>
+</html>
