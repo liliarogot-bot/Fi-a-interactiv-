@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesta sau Aceasta? - Fișă Interactivă</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0f9ff;
+        }
+        .item-card {
+            transition: transform 0.2s;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+        }
+        .tooltip {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+        .tooltip-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .correct {
+            border-color: #10b981 !important;
+            background-color: #ecfdf5;
+        }
+        .incorrect {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-blue-500 p-6 text-white text-center">
+            <h1 class="text-3xl font-bold mb-2">🏠 Obiectele din casa mea</h1>
+            <p class="text-lg opacity-90">Învață să folosești <span class="font-bold underline">Acesta</span> și <span class="font-bold underline">Aceasta</span>!</p>
+            <p class="text-sm mt-2 italic">(Pune cursorul pe cuvinte pentru traducere în rusă)</p>
+        </div>
+
+        <!-- Instructions -->
+        <div class="p-6 border-b border-gray-100 bg-yellow-50">
+            <div class="flex items-center gap-4">
+                <div class="bg-blue-100 p-3 rounded-full text-blue-600 font-bold">🔵 M / N</div>
+                <p><strong>Acesta</strong> este un... (Этот ...)</p>
+                <div class="bg-pink-100 p-3 rounded-full text-pink-600 font-bold ml-4">🩷 F</div>
+                <p><strong>Aceasta</strong> este o... (Эта ...)</p>
+            </div>
+        </div>
+
+        <!-- Quiz Area -->
+        <div class="p-6 space-y-8" id="quiz-container">
+            <!-- Items will be generated here -->
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="p-8 bg-gray-50 text-center space-y-4">
+            <button onclick="checkAnswers()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-bold text-xl transition shadow-lg">
+                Verifică răspunsurile ✅
+            </button>
+            <div id="result-message" class="text-xl font-bold hidden"></div>
+            <button onclick="resetQuiz()" class="text-blue-500 underline block mx-auto">Reîncepe exercițiul</button>
+        </div>
+    </div>
+
+        <script>
+        const items = [
+            { id: 1, img: "🎒", question: "Ce este acesta?", word: "ghiozdan", trans: "рюкзак", gender: "masc", correct: "Acesta este un ghiozdan" },
+            { id: 2, img: "📏", question: "Ce este aceasta?", word: "riglă", trans: "линейка", gender: "fem", correct: "Aceasta este o riglă" },
+            { id: 3, img: "📺", question: "Ce este acesta?", word: "televizor", trans: "телевизор", gender: "masc", correct: "Acesta este un televizor" },
+            { id: 4, img: "🛏️", question: "Ce este acesta?", word: "pat", trans: "кровать", gender: "masc", correct: "Acesta este un pat" },
+            { id: 5, img: "🪑", question: "Ce este acesta?", word: "fotoliu", trans: "кресло", gender: "masc", correct: "Acesta este un fotoliu" },
+            { id: 6, img: "🍽️", question: "Ce este aceasta?", word: "masă", trans: "стол", gender: "fem", correct: "Aceasta este o masă" },
+            { id: 7, img: "🏺", question: "Ce este aceasta?", word: "vază", trans: "ваза", gender: "fem", correct: "Aceasta este o vază" },
+            { id: 8, img: "🪞", question: "Ce este aceasta?", word: "oglindă", trans: "зеркало", gender: "fem", correct: "Aceasta este o oglindă" },
+            { id: 9, img: "🐶", question: "Cine este acesta?", word: "cățel", trans: "щенок", gender: "masc", correct: "Acesta este un cățel" },
+            { id: 10, img: "🐱", question: "Cine este aceasta?", word: "pisică", trans: "кошка", gender: "fem", correct: "Aceasta este o pisică" }
+        ];
+
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `item-card flex flex-col md:flex-row items-center gap-6 p-4 rounded-2xl border-2 border-gray-100 shadow-sm ${item.gender === 'masc' ? 'hover:border-blue-200' : 'hover:border-pink-200'}`;
+                
+                card.innerHTML = `
+                    <div class="text-5xl bg-gray-50 p-4 rounded-xl shadow-inner">${item.img}</div>
+                    <div class="flex-1 w-full">
+                        <div class="mb-2">
+                            <span class="tooltip-container relative font-bold text-gray-700 cursor-help">
+                                ${item.question}
+                                <span class="tooltip">${item.gender === 'masc' ? 'Что это? / Кто это?' : 'Что это? / Кто это?'}</span>
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <input type="text" 
+                                   id="input-${item.id}"
+                                   placeholder="Scrie răspunsul complet..." 
+                                   class="w-full p-3 rounded-lg border-2 border-gray-200 transition text-lg"
+                                   onkeypress="if(event.key === 'Enter') checkAnswers()">
+                            <div class="text-sm mt-1 text-gray-400 italic">
+                                Exemplu: ${item.gender === 'masc' ? 'Acesta este...' : 'Aceasta este...'}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tooltip-container relative cursor-help bg-gray-100 px-3 py-1 rounded text-sm text-gray-500">
+                        Indiciu: ${item.word}
+                        <span class="tooltip">${item.trans}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const resultMsg = document.getElementById('result-message');
+            
+            items.forEach(item => {
+                const input = document.getElementById(`input-${item.id}`);
+                const userVal = input.value.trim().toLowerCase().replace(/[.,!]/g, "");
+                const correctVal = item.correct.toLowerCase().replace(/[.,!]/g, "");
+
+                if (userVal === correctVal) {
+                    input.classList.remove('incorrect');
+                    input.classList.add('correct');
+                    score++;
+                } else {
+                    input.classList.remove('correct');
+                    input.classList.add('incorrect');
+                }
+            });
+
+            resultMsg.classList.remove('hidden');
+            if (score === items.length) {
+                resultMsg.innerHTML = `🌟 Felicitări! Ai obținut ${score} din ${items.length}! Ești un geniu! 🌟`;
+                resultMsg.className = "text-xl font-bold text-green-600 block animate-bounce";
+            } else {
+                resultMsg.innerHTML = `Mai încearcă! Ai corect ${score} din ${items.length}. Verifică literele!`;
+                resultMsg.className = "text-xl font-bold text-orange-500 block";
+            }
+        }
+
+        function resetQuiz() {
+            document.getElementById('result-message').classList.add('hidden');
+            initQuiz();
+        }
+
+        // Initialize on load
+        initQuiz();
+    </script>
+</body>
+</html>
