@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antrenamentul Pronunției</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #f8fafc; }
+        .page { background: white; width: 210mm; min-height: 297mm; padding: 15mm; margin: 10mm auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        .card { border-radius: 16px; padding: 12px; border: 2px solid; }
+        .grid-box { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <!-- Header -->
+    <header class="text-center mb-8 border-b-4 border-yellow-400 pb-4">
+        <h1 class="text-4xl font-bold text-slate-800">🎤 ANTRENAMENTUL PRONUNȚIEI</h1>
+        <p class="text-xl text-slate-600 mt-2">Sunetele speciale ale limbii române</p>
+        <p class="text-md text-blue-600 font-bold italic mt-2">„Exersează 3 minute la începutul fiecărei lecții!”</p>
+    </header>
+
+    <!-- Zona 1: Litere Magice -->
+    <div class="grid grid-cols-2 gap-6 mb-8">
+        <div class="card bg-yellow-50 border-yellow-200">
+            <div class="flex items-center mb-2">
+                <span class="text-4xl font-bold text-yellow-600 bg-yellow-200 px-4 py-1 rounded-full mr-3">Ă</span>
+                <span class="font-bold">Carte, Casă, Băiat</span>
+            </div>
+            <p class="text-sm text-gray-700 bg-white p-2 rounded">🇷🇺 Explicație: Se pronunță scurt, ca un sunet relaxat.</p>
+        </div>
+        <div class="card bg-green-50 border-green-200">
+            <div class="flex items-center mb-2">
+                <span class="text-4xl font-bold text-green-600 bg-green-200 px-4 py-1 rounded-full mr-3">Â/Î</span>
+                <span class="font-bold">Brânză, Pâine, Înger</span>
+            </div>
+            <p class="text-sm text-gray-700 bg-white p-2 rounded">🇷🇺 Explicație: Sunet nou. Ține limba în mijloc.</p>
+        </div>
+    </div>
+
+    <!-- Zona 2 & 3: Sunetele perechi -->
+    <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="card bg-blue-50 border-blue-200">
+            <h2 class="font-bold text-blue-800 mb-2">🔵 CE / CI (🇷🇺 ЧЕ / ЧИ)</h2>
+            <ul class="text-sm space-y-1">
+                <li>🧄 Ceapă, ☁️ Cer, 🦌 Cerb</li>
+                <li>🍒 Cireșe, 👢 Cizme, 🎪 Circ</li>
+            </ul>
+        </div>
+        <div class="card bg-green-50 border-green-200">
+            <h2 class="font-bold text-green-800 mb-2">🟢 GE / GI (🇷🇺 ДЖЕ / ДЖИ)</h2>
+            <ul class="text-sm space-y-1">
+                <li>👖 Geacă, 🧬 Gem, ⚽ George</li>
+                <li>🦒 Girafă, 💼 Geantă</li>
+            </ul>
+        </div>
+        <div class="card bg-purple-50 border-purple-200">
+            <h2 class="font-bold text-purple-800 mb-2">🟣 CHE / CHI (🇷🇺 КЕ / КИ)</h2>
+            <ul class="text-sm space-y-1">
+                <li>🔑 Cheie, 🪑 Chelner</li>
+                <li>👓 Chibrit, 📖 Chitară</li>
+            </ul>
+        </div>
+        <div class="card bg-orange-50 border-orange-200">
+            <h2 class="font-bold text-orange-800 mb-2">🟠 GHE / GHI (🇷🇺 ГЕ / ГИ)</h2>
+            <ul class="text-sm space-y-1">
+                <li>🧊 Gheață, 👢 Ghete</li>
+                <li>🎒 Ghiozdan, 🌳 Ghindă</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Zona 4, 5, 6, 7 -->
+    <div class="grid grid-cols-2 gap-6">
+        <div class="space-y-4">
+            <div class="card bg-teal-50 border-teal-200">
+                <h3 class="font-bold mb-2">🦉 Provocarea Bufniței (Repetă!)</h3>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <span>ce - ge</span> <span>ci - gi</span> <span>che - ghe</span> <span>chi - ghi</span>
+                </div>
+            </div>
+            <div class="card bg-yellow-100 border-yellow-300">
+                <h3 class="font-bold mb-1">🌉 Atenție!</h3>
+                <p class="text-xs">Nu citim cum vedem! <br> CE=ЧЕ, GE=ДЖЕ, CHE=КЕ, GHE=ГЕ</p>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="card bg-red-50 border-red-200">
+                <h3 class="font-bold mb-1">🤖 Robotul greșește</h3>
+                <p class="text-xs">❌ "cireș" = киреш → ✔ cireș</p>
+                <p class="text-xs">❌ "ghiozdan" = гиоздан → ✔ ghiozdan</p>
+            </div>
+            <div class="card bg-pink-100 border-pink-300">
+                <h3 class="font-bold mb-1">⭐ Regula de aur</h3>
+                <p class="text-xs">CE/CI=Ч | GE/GI=ДЖ | CHE/CHI=К | GHE/GHI=Г</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
