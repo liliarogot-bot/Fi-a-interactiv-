@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podul Fermecat: ESTE / SUNT</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #27ae60;
+            --bridge-stable: #2ecc71;
+            --bridge-shake: #e74c3c;
+            --bg: #f4f6f7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            color: #2980b9;
+            margin: 0 0 10px 0;
+        }
+
+        .bridge-status {
+            background: #eaf2f8;
+            border: 2px dashed #3498db;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .exercise-card {
+            background: #fdfefe;
+            border: 1px solid #d5dbdb;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-card h3 {
+            margin-top: 0;
+            color: #34495e;
+        }
+
+        .sentence-box {
+            font-size: 1.15em;
+            margin-bottom: 12px;
+        }
+
+        .translation {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 15px;
+            background: #f2f4f4;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .options {
+            display: flex;
+            gap: 15px;
+        }
+
+        button.option-btn {
+            background-color: #ecf0f1;
+            color: var(--primary);
+            border: 2px solid #bdc3c7;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.2s;
+        }
+
+        button.option-btn:hover {
+            background-color: #d0d7de;
+            border-color: #95a5a6;
+        }
+
+        button.option-btn.selected-correct {
+            background-color: var(--bridge-stable);
+            color: white;
+            border-color: #27ae60;
+        }
+
+        button.option-btn.selected-incorrect {
+            background-color: var(--bridge-shake);
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .score-panel {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: #e8f8f5;
+            border-radius: 6px;
+            border: 1px solid #a3e4d7;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #117a65;
+        }
+
+        .rule-box {
+            background: #fcf3cf;
+            border-left: 5px solid #f1c40f;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🌉 Podul Fermecat: ESTE / SUNT</h1>
+        <p>Trece podul alegând piesele gramaticale corecte!</p>
+    </header>
+
+    <!-- Starea vizuală a podului -->
+    <div id="bridge-status" class="bridge-status">
+        🌉 Podul este stabil și pregătit pentru traversare.
+    </div>
+
+    <!-- Exercițiul 1 -->
+    <div class="exercise-card" id="ex1-card">
+        <h3>1. Singular (El)</h3>
+        <div class="sentence-box">👦 <strong>El</strong> ___ elev.</div>
+        <div class="translation">🇷🇺 Traducere: Он ученик.</div>
+        <div class="options">
+            <button class="option-btn" onclick="checkAnswer(1, 'este', true)">ESTE</button>
+            <button class="option-btn" onclick="checkAnswer(1, 'sunt', false)">SUNT</button>
+        </div>
+        <div id="ex1-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Exercițiul 2 -->
+    <div class="exercise-card" id="ex2-card">
+        <h3>2. Plural (Ei)</h3>
+        <div class="sentence-box">👦👦 <strong>Ei</strong> ___ elevi.</div>
+        <div class="translation">🇷🇺 Traducere: Они ученики.</div>
+        <div class="options">
+            <button class="option-btn" onclick="checkAnswer(2, 'este', false)">ESTE</button>
+            <button class="option-btn" onclick="checkAnswer(2, 'sunt', true)">SUNT</button>
+        </div>
+        <div id="ex2-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Exercițiul 3 -->
+    <div class="exercise-card" id="ex3-card">
+        <h3>3. Singular feminin (Ea)</h3>
+        <div class="sentence-box">👧 <strong>Ea</strong> ___ profesoară.</div>
+        <div class="translation">🇷🇺 Traducere: Она учительница.</div>
+        <div class="options">
+            <button class="option-btn" onclick="checkAnswer(3, 'este', true)">ESTE</button>
+            <button class="option-btn" onclick="checkAnswer(3, 'sunt', false)">SUNT</button>
+        </div>
+        <div id="ex3-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Exercițiul 4 -->
+    <div class="exercise-card" id="ex4-card">
+        <h3>4. Plural masculin (Ei)</h3>
+        <div class="sentence-box">👨‍🏫👨‍🏫 <strong>Ei</strong> ___ profesori.</div>
+        <div class="translation">🇷🇺 Traducere: Они учителя.</div>
+        <div class="options">
+            <button class="option-btn" onclick="checkAnswer(4, 'este', false)">ESTE</button>
+            <button class="option-btn" onclick="checkAnswer(4, 'sunt', true)">SUNT</button>
+        </div>
+        <div id="ex4-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Exercițiul 5 -->
+    <div class="exercise-card" id="ex5-card">
+        <h3>5. Nume proprii</h3>
+        <div class="sentence-box">👧 👦 <strong>Ea</strong> ___ Maria, <strong>el</strong> ___ Mihai.</div>
+        <div class="translation">🇷🇺 Traducere: Она Мария, он Михаил.</div>
+        <div class="options">
+            <button class="option-btn" onclick="checkAnswer(5, 'este', true)">ESTE</button>
+            <button class="option-btn" onclick="checkAnswer(5, 'sunt', false)">SUNT</button>
+        </div>
+        <div id="ex5-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Exercițiul 6 -->
+    <div class="exercise-card" id="ex6-card">
+        <h3>6. Plural prieteni (Ei)</h3>
+        <div class="sentence-box">👦🤝👦 <strong>Ei</strong> ___ prieteni.</div>
+        <div class="translation">🇷🇺 Traducere: Они друзья.</div>
+        <div class="options">
+            <button class="option-btn" onclick="checkAnswer(6, 'este', false)">ESTE</button>
+            <button class="option-btn" onclick="checkAnswer(6, 'sunt', true)">SUNT</button>
+        </div>
+        <div id="ex6-feedback" class="feedback"></div>
+    </div>
+
+    <!-- Regula de Aur -->
+    <div class="rule-box">
+        <strong>⭐ Regula de Aur a Podului:</strong><br>
+        👤 Unul (El / Ea) $\rightarrow$ <strong>ESTE</strong><br>
+        👥 Mai mulți (Ei / Ele) $\rightarrow$ <strong>SUNT</strong>
+    </div>
+
+    <!-- Panou de Scor -->
+    <div class="score-panel" id="score-display">
+        Scor: <span id="score">0</span> / 6 puncte corecte
+    </div>
+</div>
+
+<script>
+    let score = 0;
+    let answered = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
+
+    function checkAnswer(exNum, choice, isCorrect) {
+        const feedbackEl = document.getElementById(`ex${exNum}-feedback`);
+        const card = document.getElementById(`ex${exNum}-card`);
+        const bridgeStatus = document.getElementById('bridge-status');
+        
+        const buttons = card.querySelectorAll('.option-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('selected-correct', 'selected-incorrect');
+            if(btn.innerText.toLowerCase() === choice) {
+                if(isCorrect) {
+                    btn.classList.add('selected-correct');
+                } else {
+                    btn.classList.add('selected-incorrect');
+                }
+            }
+        });
+
+        if (isCorrect) {
+            feedbackEl.innerText = "✨ Corect! Podul strălucește și este stabil.";
+            feedbackEl.style.color = "#27ae60";
+            bridgeStatus.innerText = "✨ Podul este stabil! Copiii înaintează cu succes.";
+            bridgeStatus.style.borderColor = "#2ecc71";
+            bridgeStatus.style.background = "#eafaf1";
+
+            if (!answered[exNum]) {
+                score++;
+                answered[exNum] = true;
+            }
+        } else {
+            feedbackEl.innerText = "❌ Ups! Podul se clatină. Robotul Greșește a intervenit. Încearcă din nou!";
+            feedbackEl.style.color = "#c0392b";
+            bridgeStatus.innerText = "🌉 ATENȚIE! Podul tremură! O scândură s-a clătinat.";
+            bridgeStatus.style.borderColor = "#e74c3c";
+            bridgeStatus.style.background = "#fadbd8";
+
+            if (answered[exNum]) {
+                score--;
+                answered[exNum] = false;
+            }
+        }
+
+        document.getElementById('score').innerText = score;
+    }
+</script>
+
+</body>
+</html>
