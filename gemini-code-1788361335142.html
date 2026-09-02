@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detectivul Sunetelor / Детектив звуков</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #cbd5e1;
+            --success: #16a34a;
+            --error: #dc2626;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-switch {
+            background: #e2e8f0;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .lang-switch:hover {
+            background: #cbd5e1;
+        }
+
+        .instruction {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: #e0e7ff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .transition-banner {
+            text-align: center;
+            font-weight: bold;
+            color: #64748b;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 12px 18px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .word-display {
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .translation {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-style: italic;
+            margin-left: 10px;
+        }
+
+        .options-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .option-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-btn.correct {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .option-btn.incorrect {
+            background: var(--error);
+            color: white;
+            border-color: var(--error);
+        }
+
+        .footer-actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .check-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .check-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .score {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1 id="main-title">🔎 Detectivul Sunetelor</h1>
+        <button class="lang-switch" onclick="toggleLanguage()" id="lang-btn">RU / RO</button>
+    </div>
+
+    <div class="instruction" id="instruction-text">
+        🔎 „Găsește litera secretă!”
+    </div>
+
+    <div class="transition-banner">AUD ➔ VĂD (СЛЫШУ ➔ ВИЖУ)</div>
+
+    <div class="task-list" id="task-list">
+        <!-- Generat dinamic prin JavaScript -->
+    </div>
+
+    <div class="footer-actions">
+        <button class="check-btn" onclick="checkAnswers()" id="check-btn">Verifică / Проверить</button>
+        <div class="score" id="score-display"></div>
+    </div>
+</div>
+
+<script>
+    const tasks = [
+        { word: "CASĂ", secret: "Ă", translationRo: "casă", translationRu: "дом", options: ["Ă", "A", "E"] },
+        { word: "CÂINE", secret: "Â", translationRo: "câine", translationRu: "собака", options: ["Î", "Â", "A"] },
+        { word: "ȘASE", secret: "Ș", translationRo: "șase", translationRu: "шесть", options: ["S", "Ș", "Ț"] },
+        { word: "ȚARĂ", secret: "Ț", translationRo: "țară", translationRu: "страна", options: ["T", "Ș", "Ț"] },
+        { word: "ÎNGER", secret: "Î", translationRo: "înger", translationRu: "ангел", options: ["Î", "I", "Â"] }
+    ];
+
+    let currentLang = 'ro'; // 'ro' sau 'ru'
+
+    const translations = {
+        ro: {
+            title: "🔎 Detectivul Sunetelor",
+            instruction: "🔎 „Găsește litera secretă!”",
+            checkBtn: "Verifică",
+            scoreText: "Scor: "
+        },
+        ru: {
+            title: "🔎 Детектив звуков",
+            instruction: "🔎 «Найди секретную букву!»",
+            checkBtn: "Проверить",
+            scoreText: "Счет: "
+        }
+    };
+
+    function renderTasks() {
+        const container = document.getElementById('task-list');
+        container.innerHTML = '';
+
+        tasks.forEach((task, index) => {
+            const item = document.createElement('div');
+            item.className = 'task-item';
+
+            const translationText = currentLang === 'ru' ? task.translationRu : task.translationRo;
+
+            item.innerHTML = `
+                <div>
+                    <div class="word-display">${task.word} <span class="translation">(${translationText})</span></div>
+                </div>
+                <div class="options-container" id="options-${index}">
+                    ${task.options.map(opt => `<button class="option-btn" onclick="selectOption(${index}, '${opt}')">${opt}</button>`).join('')}
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    let userSelections = {};
+
+    function selectOption(taskIndex, letter) {
+        userSelections[taskIndex] = letter;
+        const container = document.getElementById(`options-${taskIndex}`);
+        const buttons = container.getElementsByClassName('option-btn');
+        
+        Array.from(buttons).forEach(btn => {
+            if (btn.innerText === letter) {
+                btn.classList.add('selected');
+            } else {
+                btn.classList.remove('selected');
+            }
+        });
+    }
+
+    function checkAnswers() {
+        let score = 0;
+        tasks.forEach((task, index) => {
+            const container = document.getElementById(`options-${index}`);
+            const buttons = container.getElementsByClassName('option-btn');
+            
+            Array.from(buttons).forEach(btn => {
+                btn.classList.remove('correct', 'incorrect');
+                if (btn.innerText === task.secret) {
+                    btn.classList.add('correct');
+                }
+                if (btn.classList.contains('selected') && btn.innerText !== task.secret) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            if (userSelections[index] === task.secret) {
+                score++;
+            }
+        });
+
+        const scoreDisplay = document.getElementById('score-display');
+        const text = translations[currentLang].scoreText;
+        scoreDisplay.innerText = `${text} ${score} / ${tasks.length}`;
+    }
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'ro' ? 'ru' : 'ro';
+        
+        document.getElementById('main-title').innerText = translations[currentLang].title;
+        document.getElementById('instruction-text').innerHTML = translations[currentLang].instruction;
+        document.getElementById('check-btn').innerText = translations[currentLang].checkBtn;
+        
+        renderTasks();
+        userSelections = {};
+        document.getElementById('score-display').innerText = '';
+    }
+
+    // Inițializare
+    renderTasks();
+</script>
+
+</body>
+</html>
